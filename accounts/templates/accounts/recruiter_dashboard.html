@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">Recruiter Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card shadow text-center">
+            <div class="card-body">
+
+                <h5>Post New Job</h5>
+
+                <a href="{% url 'post-job' %}" class="btn btn-primary mt-2">
+                    Post Job
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card shadow text-center">
+            <div class="card-body">
+
+                <h5>My Posted Jobs</h5>
+
+                <a href="{% url 'recruiter-jobs' %}" class="btn btn-success mt-2">
+                    View Jobs
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

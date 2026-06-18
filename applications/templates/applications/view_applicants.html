@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Applicants for {{ job.title }}
+    <span class="text-muted fs-6">
+        ({{ applications|length }})
+    </span>
+</h2>
+
+{% for app in applications %}
+
+<div class="card mb-3 shadow-sm">
+
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-start">
+
+            <!-- LEFT SIDE -->
+            <div>
+
+                <strong class="fs-5">
+                    {{ app.job_seeker.jobseekerprofile.full_name }}
+                </strong>
+
+                <div class="text-muted small">
+                    {{ app.job_seeker.email }}
+                </div>
+
+                <div class="text-muted small mb-2">
+                    Applied {{ app.applied_at|timesince }} ago
+                </div>
+
+                <div class="profile-preview">
+
+                    {% if app.job_seeker.jobseekerprofile.skills %}
+                    <div>
+                        <strong>Skills:</strong>
+                        {{ app.job_seeker.jobseekerprofile.skills }}
+                    </div>
+                    {% endif %}
+
+                    {% if app.job_seeker.jobseekerprofile.experience %}
+                    <div>
+                        <strong>Experience:</strong>
+                        {{ app.job_seeker.jobseekerprofile.experience }}
+                    </div>
+                    {% endif %}
+
+                    {% if app.job_seeker.jobseekerprofile.bio %}
+                    <div>
+                        <strong>About:</strong>
+                        {{ app.job_seeker.jobseekerprofile.bio|truncatewords:20 }}
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT SIDE STATUS -->
+            <div>
+
+                {% if app.status == "applied" %}
+                <span class="badge bg-secondary fs-6 px-3 py-2 rounded-pill">
+                    Applied
+                </span>
+
+                {% elif app.status == "shortlisted" %}
+                <span class="badge bg-success fs-6 px-3 py-2 rounded-pill">
+                    Shortlisted
+                </span>
+
+                {% elif app.status == "rejected" %}
+                <span class="badge bg-danger fs-6 px-3 py-2 rounded-pill">
+                    Rejected
+                </span>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="d-flex gap-2">
+
+            {% if app.job_seeker.jobseekerprofile.resume %}
+            <a href="{{ app.job_seeker.jobseekerprofile.resume.url }}"
+               class="btn btn-outline-primary btn-sm">
+                Download Resume
+            </a>
+            {% endif %}
+
+            {% if app.status == "applied" %}
+
+            <a href="{% url 'update-status' app.id 'shortlisted' %}"
+               class="btn btn-outline-success btn-sm">
+                Shortlist
+            </a>
+
+            <a href="{% url 'update-status' app.id 'rejected' %}"
+               class="btn btn-outline-danger btn-sm">
+                Reject
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% empty %}
+
+<p>No applicants yet.</p>
+
+{% endfor %}
+
+{% endblock %}

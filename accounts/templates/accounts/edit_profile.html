@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <h3 class="mb-4 text-center">Edit Your Profile</h3>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- PERSONAL INFO -->
+                    <h5 class="mb-3 text-primary">Personal Information</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        {{ form.full_name }}
+                    </div>
+
+                    <!-- PROFESSIONAL INFO -->
+                    <h5 class="mt-4 mb-3 text-primary">Professional Details</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label">Skills</label>
+                        {{ form.skills }}
+                        <small class="text-muted">
+                            Example: Python, Django, MySQL
+                        </small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Experience</label>
+                        {{ form.experience }}
+                        <small class="text-muted">
+                            Example: 2 Years Backend Development
+                        </small>
+                    </div>
+
+                    <!-- ABOUT -->
+                    <h5 class="mt-4 mb-3 text-primary">About You</h5>
+
+                    <div class="mb-3">
+                        {{ form.bio }}
+                    </div>
+
+                    <!-- RESUME -->
+                    <h5 class="mt-4 mb-3 text-primary">Resume</h5>
+
+                    <div class="mb-3">
+                        {{ form.resume }}
+                    </div>
+
+                    {% if user.jobseekerprofile.resume %}
+                    <div class="mb-3">
+                        <a href="{{ user.jobseekerprofile.resume.url }}"
+                           target="_blank"
+                           class="btn btn-outline-secondary btn-sm">
+                            View Uploaded Resume
+                        </a>
+                    </div>
+                    {% endif %}
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary px-5">
+                            Save Profile
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

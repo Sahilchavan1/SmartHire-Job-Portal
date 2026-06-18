@@ -1,0 +1,42 @@
+/* Page background */
+body {
+    background: linear-gradient(135deg, #f5f7fb, #eef1f7);
+}
+
+
+/* Auth Card (Login/Register) */
+.auth-card {
+    max-width: 420px;
+    margin: auto;
+    margin-top: 80px;
+    padding: 35px;
+    border-radius: 12px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+
+/* Form labels */
+.form-label {
+    font-weight: 500;
+}
+
+
+/* Inputs */
+.form-control {
+    height: 42px;
+}
+
+
+/* Register/Login button */
+.auth-btn {
+    height: 45px;
+    font-weight: 500;
+}
+
+
+/* Bottom text */
+.auth-footer {
+    text-align: center;
+    margin-top: 15px;
+}
