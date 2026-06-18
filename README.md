@@ -267,6 +267,6 @@ Django admin panel used to manage users, jobs, and applications.
 
 # Author
 
-Developed by **Chetan Ahire**
+Developed by **Sahil Chavan**
 
 Python & Django Developer
